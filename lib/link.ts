@@ -18,6 +18,7 @@ export const sales = [
 export const product = [
     {link:"/product/addproduct", name:" add product" , class:""},
     {link:"/product/category", name:"category" , class:""},
+    {link:"/product/category/addcategory", name:" Add category" , class:""},
     {link:"/stock", name:"stock" , class:""},
     {link:"/report", name:"Report" , class:"md:hidden"},
     {link:"/product", name:"Product" , class:"md:hidden"},
