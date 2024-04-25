@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button"
 import React, { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -61,7 +62,8 @@ export function DataTable<TData, TValue>({
     })
 
     return (
-        <div className="px-3">
+        <ScrollArea className="w-screen">
+            <div className="px-3">
             <div className="rounded-md px-2 border">
                 <div className="flex items-center py-4">
                     <Input
@@ -155,7 +157,8 @@ export function DataTable<TData, TValue>({
                 <Button variant={"outline"} size={"sm"} onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</Button>
             </div>
 
-
         </div>
+        <ScrollBar orientation="horizontal" />
+        </ScrollArea>
     )
 }
