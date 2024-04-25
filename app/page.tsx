@@ -13,10 +13,17 @@ import InfoCard from '@/components/information/InfoCard'
 import {homePage} from '@/lib/link'
 
 
+
+const baseUrl =
+process.env.NODE_ENV === "production"
+  ? "https://bravo-eta-coral.vercel.app"
+  : "http://localhost:3000";
+
+
 async function productQantityInfo() {
   try {
     const respond = await fetch(
-      process.env.NEXT_PUBLIC_URL + "/api/product/alert",
+      baseUrl + "/api/product/alert",
       { cache: "no-store", method: "GET" }
     );
 
@@ -59,10 +66,6 @@ async function productExpireInfo() {
 
 
 
- const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://bravo-eta-coral.vercel.app/"
-    : "http://localhost:3000";
 
 export default async function page() {
   const session: any = await getServerSession(authOptions)
