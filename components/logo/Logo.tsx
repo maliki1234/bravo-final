@@ -5,22 +5,23 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import ClipLoader from "react-spinners/ClipLoader";
+
 
 
 
 export default function Logo() {
-  const { data: session , status } = useSession(
+  const { data: session , status } = useSession()
+   
 
-    )
-// console.log(session)  
+    // )
+    // console.log(session)
 
 // text-[#075985] 
   return (
     <div><Link href={"/"} ><h3 className="text-2xl text-primary font-black uppercase px-12">
       {/* <Image src={'/../../static/image/BRAVO.png'} width={50} height={200} alt='sjddhfkj'/> */}
-      {session? session.Business : <ClipLoader color="#36d7b7" size={20}
-        />}
+      {session? session?.Business : process.env.NEXT_PUBLIC_BRAND_NAM}
+      {/* logo */}
       </h3></Link></div>
   )
 }

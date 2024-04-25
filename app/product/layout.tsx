@@ -6,8 +6,10 @@ import { ThemeProvider } from "@/components/provider/theme-provider"
 import SideBar from "@/components/sidebar/SideBar"
 import { Toaster } from "@/components/ui/toaster"
 import Link from "next/link"
-import Header from "@/components/product/Header"
+// import Header from "@/components/product/Header"
 import { redirect } from "next/navigation"
+import Header from "@/components/header/Header"
+import { product } from "@/lib/link"
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -41,13 +43,13 @@ export default async function RootLayout({
       <Provider>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system">
-        <div className="grid grid-cols-9">
-          <div className="col-span-1">
+        <div className="grid  md:grid-cols-9">
+          <div className=" hidden md:block md:col-span-1">
            <SideBar />
           </div>
           <div className="col-span-8">
             <div className='relative h-screen'>
-            <Header/>
+            <Header links={product}/>
               {children}
             </div >
           </div>

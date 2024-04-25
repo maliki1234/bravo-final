@@ -97,7 +97,7 @@ export default function SalesFooter() {
     return (
         <>
 
-            <Card className='fixed w-11/12 py-2 grid grid-cols-1 md:grid-cols-5 bottom-0'>
+            <Card className='fixed w-full fixed left-0 py-2 grid grid-cols-1 md:grid-cols-5 bottom-0'>
                 <div className="col-span-4"></div>
                 <div className="cols=-span-1">
                     <div className="grid px-2 py-1 gap-y-1 grid-cols-2">

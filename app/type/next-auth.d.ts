@@ -15,11 +15,13 @@ declare module "next-auth" {
   interface Session {
     user: User & {
     role: String,
-    pNumber: String
+    pNumber: String,
+    Businness: String
     } 
     token: {
       pNumber:String,
-      role: String
+      role: String,
+      Businness: String
     }
   }
 }

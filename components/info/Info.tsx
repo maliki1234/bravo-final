@@ -81,7 +81,7 @@ export default function Info() {
 
     const router = useRouter()
   return (
-   <div className="grid grid-cols-4 gap-4 p-4">
+   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
     {/* <div className="" onClick={()=> redirect('/navbar')}><HomePageHeadCard title={'sales'} icons={<AiOutlineDollar/>} desriptions={"view sales"} amount={"point of sales"} /></div> */}
     <div className="cursor-pointer"><Link href={'/sales'}> <HomePageHeadCard  title={'sales'} icons={<AiOutlineUser/>} desriptions={`sale now`} amount={"point of sales"}  /></Link></div>
     <div className="cursor-pointer"><Link href={'/profiles/user'}> <HomePageHeadCard  title={'user'} icons={<AiOutlineUser/>} desriptions={`${users} users`} amount={"Manage users"}  /></Link></div>

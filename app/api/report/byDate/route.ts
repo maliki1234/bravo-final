@@ -6,6 +6,9 @@ export async function GET(req:Request) {
     try {
         const report = await db.report.groupBy({
           by:  ['date'],
+          _sum:{
+            totalPrice: true
+          }
           }
         )
         if (!report) {

@@ -59,7 +59,7 @@ export default function DailyReport() {
             <TableCell>
                 {/* {element.price}   */}
                 {/* price */}{
-                    element._sum.price
+                    element._sum.totalPrice
                 }
             </TableCell>
             <TableCell>

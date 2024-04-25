@@ -38,7 +38,7 @@ export default function ReportFooter({ pro , day }) {
   const { data: session } = useSession();
  
 
-  console.log(session)
+  // console.log(session)
 
   const getReportByDate = async(date:any) => {
     
@@ -54,6 +54,7 @@ export default function ReportFooter({ pro , day }) {
   
       const data = await respond.json();
       const dt = data.message
+      // console.log(dt)
       const sum = dt.reduce((accumulator, object) => {
         return accumulator + object.price;
       }, 0);

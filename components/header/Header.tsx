@@ -8,22 +8,21 @@ import Link from 'next/link'
 import Logo from '../logo/Logo'
 import { useSession } from 'next-auth/react'
 
-export default function Header() {
-  // const {data: session} = useSession()
-  // const { data: session , status } = useSession(
+export default function Header({links}) {
 
-    // )
-  
-  // console.log(session)
+  // console.log(links)
   return (
    <>
     <Card  className='w-full flex items-center justify-between py-4'>
         <Logo/>
-        <nav className='flex px-2'> <MainNav/>
-        <div className="px-2"></div>
-        <UserNav/>
-        <div className="px-2"></div>
-        <ModeToggle/>
+        <nav className='flex md:grid grid-cols-3   md:grid-cols-6'> 
+<div className="cols-span-1 flex items-center md:col-span-4 col-start-1">
+<MainNav links={links}/>
+  </div>       
+  <div className="md:col-span-1 flex justify-center items-center col-start-1">
+  <UserNav />
+  </div>
+        {/* <ModeToggle/> */}
         </nav>
     </Card>
    </>

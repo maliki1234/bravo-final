@@ -12,7 +12,10 @@ import SideBar from "@/components/sidebar/SideBar"
 import { Toaster } from "@/components/ui/toaster"
 // import Header from "@/components/product/Header"
 import Link from "next/link"
-import Header from "@/components/product/Header"
+// import Header from "@/components/product/Header"
+import { redirect } from "next/navigation"
+import Header from "@/components/header/Header"
+import { profile } from "@/lib/link"
 // import Header from "@/components/header/Header"
 
 
@@ -25,7 +28,7 @@ export default async function RootLayout({
 
   const session = await getServerSession(authOptions)
   if(session === null){
-    // redirect('/auth/login')
+    redirect('/auth/login')
   }
 
   // if (session ) {
@@ -47,13 +50,13 @@ export default async function RootLayout({
       <Provider>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system">
-        <div className="grid grid-cols-9">
-          <div className="col-span-1">
+        <div className="grid md:grid-cols-9">
+          <div className="hidden md:block md:col-span-1">
            <SideBar />
           </div>
-          <div className="col-span-8">
+          <div className="md:col-span-8">
             <div className='relative h-screen'>
-            <Header/>
+            <Header links={profile}/>
               {children}
             </div >
           </div>

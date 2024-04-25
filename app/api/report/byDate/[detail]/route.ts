@@ -29,5 +29,6 @@ return NextResponse.json({success: false, message: "cant find the report please 
  }, {status: 300})
     
 }
+console.log(report)
 return NextResponse.json({succcess: true, message: report}, {status: 200})
 }

@@ -1,17 +1,40 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    eslint: {
-        // Warning: This allows production builds to successfully complete even if
-        // your project has ESLint errors.
-        ignoreDuringBuilds: true,
-      },
-      typescript: {
-        // !! WARN !!
-        // Dangerously allow production builds to successfully complete even if
-        // your project has type errors.
-        // !! WARN !!
-        ignoreBuildErrors: true,
-      },
-}
+// const nextConfig = {
+//     eslint: {
+      
+//         ignoreDuringBuilds: true,
+//       },
+//       typescript: {   
+//         ignoreBuildErrors: true,
+//       },
+// }
 
-module.exports = nextConfig
+// module.exports = nextConfig
+
+
+// Configuration options for Next.js
+const nextConfig = {
+  reactStrictMode: true, // Enable React strict mode for improved error handling
+  swcMinify: true,      // Enable SWC minification for improved performance
+  compiler: {
+    removeConsole: process.env.NODE_ENV !== "development", // Remove console.log in production
+  },
+  eslint: {
+      
+            ignoreDuringBuilds: true,
+          },
+          typescript: {   
+            ignoreBuildErrors: true,
+          },
+};
+
+// Configuration object tells the next-pwa plugin 
+const withPWA = require("next-pwa")({
+  dest: "public", // Destination directory for the PWA files
+  disable: process.env.NODE_ENV === "development", // Disable PWA in development mode
+  register: true, // Register the PWA service worker
+  skipWaiting: true, // Skip waiting for service worker activation
+});
+
+// Export the combined configuration for Next.js with PWA support
+module.exports = withPWA(nextConfig);

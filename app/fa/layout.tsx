@@ -10,7 +10,9 @@ import { ThemeProvider } from "@/components/provider/theme-provider"
 import SideBar from "@/components/sidebar/SideBar"
 // import Header from "@/components/product/Header"
 import { redirect } from "next/navigation"
-import Header from "@/components/sales/Header"
+import Header from "@/components/header/Header"
+import { sales } from "@/lib/link"
+// import Header from "@/components/sales/Header"
 // import Header from "@/components/header/Header"
 
 
@@ -42,7 +44,7 @@ export default async function RootLayout({
           </div>
           <div className="col-span-8">
             <div className='relative h-screen'>
-            <Header/>
+            <Header links={sales}/>
               {children}
             </div >
           </div>

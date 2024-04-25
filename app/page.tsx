@@ -8,8 +8,9 @@ import { redirect, useRouter } from 'next/navigation'
 
 import React from 'react'
 import PageMain from '../components/chart/PageMain'
-import Information from '@/components/information/Information'
+
 import InfoCard from '@/components/information/InfoCard'
+import {homePage} from '@/lib/link'
 
 
 async function productQantityInfo() {
@@ -59,10 +60,9 @@ async function productExpireInfo() {
 
 export default async function page() {
   const session: any = await getServerSession(authOptions)
+  // console.log(session)
 
-// console.log(session)
-// const router = useRouter()
-
+// console.log(link)
  if (session === null) {
 
 redirect("/auth/login")
@@ -75,18 +75,10 @@ redirect("/auth/login")
 
  const productQuantityAlert = await productQantityInfo()
  const productExpireInfomation = await productExpireInfo() 
-//  console.log(productQuantityAlert)
+
 
 if (session?.role === "EMPLOYEE" ) {
-// return(
-//   <div className="w-ful h-screen grid items-center justify-center">
-//     <div className="p-4">
-//       <h3 className="text-center">your not authorised to open this page </h3>
-//       <Link className='text-center w-full text-blue-500' href="/sales">go to sales</Link>
-//     </div>
-//   </div>
-// )
-// return router.push('/sales')
+
 redirect("/sales")
 
 
@@ -97,15 +89,15 @@ const expire  = ()=>{
 }
   return (
   <div >
-     <Header />
+     <Header links={homePage}/>
    <Info/>
-   <div className="grid grid-cols-6 px-4">
-    <div className="col-span-4 h-96 ">
+   <div className="grid grid-cols-1 md:grid-cols-6 px-4">
+    <div className="col-span-4 h-auto md:h-96 ">
      <PageMain/>
      
     </div>
     <div className=" flex flex-col gap-4 col-span-2">
-    {/* <Information/> */}
+    
     <InfoCard heading={`product under ${session.BusinessInfo.productRemain} items`} content={productQuantityAlert.length} link={'product/alert/quantity'} />
     <InfoCard heading={`product expire alert before ${session.BusinessInfo.expDateInfo}`} content={productExpireInfomation.length} link={'product/alert/expire'}/>
 

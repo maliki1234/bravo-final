@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: `${process.env.NEXT_PUBLIC_BRAND_NAME}`,
+  manifest: "/manifest.json",
   // description: 'leo',
 }
 

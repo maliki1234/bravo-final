@@ -8,9 +8,11 @@ import { Inter } from "next/font/google"
 import Provider from "@/app/context/Provider"
 import { ThemeProvider } from "@/components/provider/theme-provider"
 import SideBar from "@/components/sidebar/SideBar"
-import Header from "@/components/product/Header"
+// import Header from "@/components/product/Header"
 import { redirect } from "next/navigation"
 import Link from "next/link"
+import Header from "@/components/header/Header"
+import { report } from "@/lib/link"
 // import Header from "@/components/header/Header"
 
 
@@ -44,13 +46,13 @@ export default async function RootLayout({
       <Provider>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system">
-        <div className="grid grid-cols-9">
-          <div className="col-span-1 z-10"  >
+        <div className="grid md:grid-cols-9">
+          <div className=" hidden md:block col-span-1 z-10"  >
            <SideBar />
           </div>
           <div className="col-span-8">
             <div className='relative h-screen'>
-            <Header/>
+            <Header links={report}/>
               {children}
             </div >
           </div>
