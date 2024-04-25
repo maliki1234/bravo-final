@@ -58,6 +58,12 @@ async function productExpireInfo() {
 }
 
 
+
+ const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://bravo-eta-coral.vercel.app/"
+    : "http://localhost:3000";
+
 export default async function page() {
   const session: any = await getServerSession(authOptions)
   // console.log(session)
@@ -107,3 +113,5 @@ const expire  = ()=>{
    
   )
 }
+
+export { baseUrl}
