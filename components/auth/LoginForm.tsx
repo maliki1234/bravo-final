@@ -29,7 +29,7 @@ export default function LoginForm() {
   const {toast}= useToast()
 
   async function getAdmin() {
-    const response = await fetch( baseUrl + '/api/user/getAdmin', {
+    const response = await fetch('/api/user/getAdmin', {
       method: 'GET',
       cache: "no-store"
     })
