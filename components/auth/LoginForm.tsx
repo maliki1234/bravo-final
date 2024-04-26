@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { signIn} from "next-auth/react"
 import { useToast } from '../ui/use-toast'
+import { baseUrl } from '@/app/page'
  
 const formSchema = z.object({
   phoneNumber: z.coerce.number(),

@@ -146,7 +146,7 @@ useEffect(()=>{
             {
               isLoading ? <div className="">please select product to add stock</div> : <div className="w-full grid justify-center text-3xl text-[#s2b5876]"> add stock for {product.name}</div>
             }
-            <div className="grid px-3 grid-cols-2 gap-4 items-center">
+            <div className="grid px-3 grid-cols-1 md:grid-cols-2 gap-4 items-center">
               <FormField
                 control={form.control}
                 name="price"
