@@ -46,7 +46,7 @@ if (response.ok) {
       description:`${b.message}`
   })
    
-    signOut()
+    // signOut()
   return router.push('/auth/register')
    
 } else {
@@ -117,7 +117,3 @@ const clearBusiness = async() => {
     </>
   )
 }
-function preventDefault() {
-  throw new Error('Function not implemented.')
-}
-

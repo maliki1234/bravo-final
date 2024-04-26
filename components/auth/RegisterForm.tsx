@@ -30,9 +30,7 @@ const form = useForm<z.infer<typeof formSchema>>({
 })
 
 async function onSubmit(values: z.infer<typeof formSchema>) {
-  // Do something with the form values.
-  // ✅ This will be type-safe and validated.
-  // console.log(values)
+  
   const response = await fetch('/api/register', {
     method: 'POST',
     headers: {
