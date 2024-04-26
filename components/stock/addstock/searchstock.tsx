@@ -99,7 +99,7 @@ useEffect(() => {
   return (
     <>
     <Form {...form}>
-      <form  onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 grid grid-cols-4">
+      <form  onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pl-2 md:pl-0 grid grid-cols-4">
        <div className="col-span-2 flex pt-6 items-center justify-end">
        <FormField
           control={form.control}
@@ -130,7 +130,7 @@ useEffect(() => {
                 <PopoverContent className="w-64 p-0">
                   <Command>
                     <CommandInput placeholder="Search product..." />
-                    <CommandEmpty>No language found.</CommandEmpty>
+                    <CommandEmpty>No product found.</CommandEmpty>
                     <CommandGroup>
                       {allProduct.map((language: any) => (
                         <CommandItem
@@ -161,7 +161,7 @@ useEffect(() => {
           )}
         />
        </div>
-        <div className="flex items-center justify-left">
+        <div className="flex items-center justify-right md:justify-left">
         <Button type="submit">add purchased stock</Button>
         </div>
       </form>
