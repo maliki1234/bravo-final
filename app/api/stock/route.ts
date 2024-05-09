@@ -1,7 +1,7 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-
+export const dynamic = "force-dynamic"
 
 const formSchema = z.object({
     price: z.coerce.number().min(2, { message: 'Please enter the product name' }),

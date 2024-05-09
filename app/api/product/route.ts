@@ -3,6 +3,7 @@ import { hash } from "bcrypt";
 
 import { NextResponse } from "next/server";
 import * as z from "zod";
+export const dynamic = "force-dynamic"
 
 
 const formSchema = z.object({
