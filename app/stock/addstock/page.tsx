@@ -230,7 +230,7 @@ useEffect(()=>{
               </div>
               <div className="flex flex-col">
                 <Label className="py-3">profit per item</Label>
-                <div className="grid rounded-md border px-4 border-[#2b5876] text-center py-2">{product.price - price / quantity} Tsh <span>{(product.price - price / quantity) / price * 100}%</span></div>
+                <div className="grid rounded-md border px-4 border-[#2b5876] text-center py-2">{product.price - price / quantity} Tsh <span>{(product.price - price/quantity)/(price/quantity)* 100}%</span></div>
 
               </div>
               <div className="flex flex-col">

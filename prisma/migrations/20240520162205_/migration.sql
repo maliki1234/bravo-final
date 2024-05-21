@@ -8,7 +8,7 @@ CREATE TYPE "state" AS ENUM ('active', 'freeze');
 CREATE TABLE "Businness" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
+    "description" TEXT,
     "expDateInfo" INTEGER NOT NULL DEFAULT 60,
     "productRemain" INTEGER NOT NULL DEFAULT 10,
 
@@ -23,7 +23,7 @@ CREATE TABLE "User" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'ADMIN',
     "active" BOOLEAN NOT NULL DEFAULT false,
-    "random" TEXT NOT NULL,
+    "random" BOOLEAN NOT NULL DEFAULT false,
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "phoneNumber" INTEGER NOT NULL,
@@ -46,12 +46,12 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "price" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL DEFAULT 0,
-    "description" TEXT NOT NULL,
+    "description" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "categoryId" INTEGER NOT NULL,
     "state" "state" NOT NULL DEFAULT 'active',
-    "barcode" TEXT NOT NULL,
+    "barcode" TEXT,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -90,15 +90,15 @@ CREATE TABLE "Report" (
     "UserId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "quantity" INTEGER NOT NULL,
-    "totalPrice" INTEGER NOT NULL,
-    "price" INTEGER NOT NULL,
+    "quantity" DECIMAL(9,2) NOT NULL,
+    "totalPrice" DECIMAL(9,2) NOT NULL,
+    "price" DECIMAL(9,2) NOT NULL,
     "date" TEXT NOT NULL DEFAULT '2023-12-17',
     "time" TEXT NOT NULL DEFAULT '00:00',
     "month" TEXT NOT NULL DEFAULT '1',
     "year" TEXT NOT NULL DEFAULT '2024',
-    "ppi" INTEGER NOT NULL DEFAULT 0,
-    "profit" INTEGER NOT NULL DEFAULT 0,
+    "ppi" DECIMAL(9,2) NOT NULL DEFAULT 0,
+    "profit" DECIMAL(9,2) NOT NULL DEFAULT 0,
 
     CONSTRAINT "Report_pkey" PRIMARY KEY ("id")
 );

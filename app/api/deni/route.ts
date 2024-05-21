@@ -1,22 +1,36 @@
 import db from "@/lib/db";
-import { updateLocale } from "moment";
 import { NextResponse } from "next/server";
-
 
 export async function POST(req: Request) {
     
     try {
         const b =  await req.json();
-        let {id   , price , quantity , user } = b
+        let {id   , price , quantity , user , customerId } = b
+
+        // console.log(amountPaid)
+
+
+
+
         // console.log(b)
        let dat = new Date().toLocaleTimeString('en-US', { hour12: false, 
             hour: "numeric", 
             minute: "numeric"});
 
 
-            //  LOOKING FOR A PRODUCT
+            const customer = await db.customer.findUnique({
+                where:{
+                    id: customerId
+                }
+            })
+
+            if (!customer) {
+                return NextResponse.json({success: false , message: "cant update"}, {status: 400})
+            }
 
 
+
+            // console.log(customer)
         const product = await db.product.findUnique({
             where:{
                 id
@@ -49,11 +63,11 @@ export async function POST(req: Request) {
 
         // THIS IS WHERE WE SHOULD FOCUS ON MORE
 
-        const z = async(currentStock: any , quantity: number)=>{
+        const z = async(currentStock: any , quantity: number )=>{
 
 
              const b = {...currentStock}
-             console.log(quantity)
+            //  console.log(quantity)
                const c = currentStock.pPrice / product.quantity
 
             const updateStock = await db.stock.update({
@@ -69,7 +83,7 @@ export async function POST(req: Request) {
                 return  NextResponse.json({message: 'failed to update stock'} , {status: 303})
 
             }
-             const createReport = await db.report.create({
+            const createReport = await db.deni.create({
                 data: {
                     ProductId: b.ProductId,
                     UserId: b.UserId,
@@ -81,14 +95,13 @@ export async function POST(req: Request) {
                     month: `${new Date().getMonth() + 1}`,
                     year: `${new Date().getFullYear()}`,
                     ppi: c,
-                    profit: (product.price -  b.ppi) * quantity
+                    profit: (product.price -  b.ppi) * quantity,
+                    CustomerId: customerId
         
                 }
                })
+         
         
-              if (!createReport) {
-                return  NextResponse.json({message: 'Create Report failed'} , {status: 303})
-              }
         }
         
 
@@ -98,19 +111,19 @@ export async function POST(req: Request) {
             if(quantity >= currentStock.remain ) // if quantity of the currentstock
             {
                 quantity -= currentStock.remain;
-                z(currentStock , quantity)
+                z(currentStock , quantity )
                 currentStock.quantity = 0
                 // console.log(currentStock)
             }else{
                 currentStock.remain -= quantity
-               z(currentStock ,quantity)
+               z(currentStock ,quantity, )
                 break;
             }
 
         }
 
        stocks.forEach(async element =>{
-        // console.log( element)
+        console.log( element)
 
         const updateStock = await db.stock.update({
             where: {
@@ -140,6 +153,7 @@ export async function POST(req: Request) {
             return NextResponse.json({message: "Error updating product"},{status:300})
            }
 
+           console.log(updateProduct)
        }
        
        )
@@ -148,3 +162,30 @@ export async function POST(req: Request) {
         return NextResponse.json({ message: error},{status:500})
     }
 } 
+
+export async function GET(req:Request) {
+
+
+    const deni = await db.deni.findMany({
+        include: {
+            Customer: true,
+            Saler: true,
+            Product: true
+        }
+    })
+    if (!deni) {
+        return NextResponse.json({success: false , message: "faied to fetch customer"}, {status: 400})
+    }
+
+   const b = deni.map(e =>{
+    return {
+        ...e,
+        Saler: {
+            name: e.Saler.firstName +" "+ e.Saler.lastName,
+        }
+    }
+   })
+//    console.log(b)
+
+    return NextResponse.json({success: true , message: b}, {status: 200})
+}

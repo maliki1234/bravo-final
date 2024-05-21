@@ -60,7 +60,7 @@ async function getUsers(date:string) {
 export default async function page(props) {
   const date = props.params.date
   const productData: product = await getUsers(date)
-  console.log(productData)
+  // console.log(productData)
   return (
     <div className="">
       <div className="w-full py-2 px-6  flex justify-center">

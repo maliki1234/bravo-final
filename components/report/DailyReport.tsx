@@ -23,7 +23,7 @@ export default function DailyReport() {
       
           const data = await respond.json();
           setreport(data.message)
-          console.log(data.message)
+          // console.log(data.message)
         //   return data.message
           
         

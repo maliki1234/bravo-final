@@ -124,12 +124,40 @@ export const columns: ColumnDef<User>[] = [
 
 
     {
-        accessorKey: "Product.name",
+        accessorKey: "Customer.name",
         header: ({ column }) => {
             return (
                 <Button variant={'ghost'}
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    product name
+                    customer
+                    <ArrowUpDown className="ml-2 w-4" />
+                </Button>
+            )
+        },
+    },
+    {
+        accessorKey: "Product.name",
+        header: "product ",
+    },
+    {
+        accessorKey: "quantity",
+        header: "quantity ",
+    },
+    {
+        accessorKey: "price",
+        header: "price ",
+    },
+    {
+        accessorKey: "totalPrice",
+        header: "total",
+    },
+    {
+        accessorKey: "state",
+        header: ({ column }) => {
+            return (
+                <Button variant={'ghost'}
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+                    state
                     <ArrowUpDown className="ml-2 w-4" />
                 </Button>
             )
@@ -139,92 +167,72 @@ export const columns: ColumnDef<User>[] = [
         accessorKey: "quantity",
         header: "quantity ",
     },
-    {
-        accessorKey: "price",
-        header: "price per item ",
-    },
-    {
-        accessorKey: "time",
-        header: "time ",
-    },
-    {
-        accessorKey: "totalPrice",
-        header: "total price",
-    },
     
 
     {
-        accessorKey: "Saler.firstName",
+        accessorKey: "category.name",
         header: ({ column }) => {
             return (
                 <Button variant={'ghost'}
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                    saler first name
-                    <ArrowUpDown className="ml-2 text-center w-4" />
+                    category
+                    <ArrowUpDown className="ml-2 w-4" />
                 </Button>
             )
         },
     },
-    {
-        accessorKey: "Saler.lastName",
-        header: "last name ",
-    },
-    {
-        accessorKey: "profit",
-        header: "total profit ",
-    },
 
-    // {
-    //     id: "actions",
-    //     cell: ({ row }) => {
-    //         const user = row.original
+    {
+        id: "actions",
+        cell: ({ row }) => {
+            const user = row.original
 
-    //         return (
-    //             <>
-    //                 <DropdownMenu>
-    //                     <DropdownMenuTrigger asChild>
-    //                         <Button variant={'ghost'} className="h-8 w-8 p-0">
-    //                             <span className="sr-only">open menu</span>
-    //                             <MoreHorizontal className="h-4 w-4" />
-    //                         </Button>
-    //                     </DropdownMenuTrigger>
-    //                     <DropdownMenuContent align="end">
-    //                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-    //                         <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
-    //                             coppy category Id
-    //                         </DropdownMenuItem>
-    //                         <DropdownMenuSeparator />
-    //                         {/* <DropdownMenuItem onClick={() => changeRole(user.id)}> change role to {user.role === 'ADMIN' ? 'user' : 'admin'}</DropdownMenuItem>
-    //                         <DropdownMenuItem onClick={() => activeLambda(user.id)}> {user.active ? 'deactivate' : "activate"}</DropdownMenuItem>
-    //                         <DropdownMenuSeparator /> */}
-    //                         <Dialog>
-    //                     <DialogTrigger asChild>
-    //                         <Button variant="outline">Edit product</Button>
-    //                     </DialogTrigger>
-    //                     <DialogContent className="sm:max-w-[425px]">
-    //                         <DialogHeader>
-    //                             <DialogTitle>Edit product</DialogTitle>
-    //                             <DialogDescription>
-    //                                 Make changes to your profile here. Click save when you're done.
-    //                             </DialogDescription>
-    //                         </DialogHeader>
-    //                         <EditProduct user={user}/>
-    //                     </DialogContent>
-    //                 </Dialog>
-    //                         <DropdownMenuItem onClick={() => remove(user.id)}> remove product</DropdownMenuItem>
-    //                     </DropdownMenuContent>
-    //                 </DropdownMenu>
+            return (
+                <>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant={'ghost'} className="h-8 w-8 p-0">
+                                <span className="sr-only">open menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
+                                coppy category Id
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            {/* <DropdownMenuItem onClick={() => changeRole(user.id)}> change role to {user.role === 'ADMIN' ? 'user' : 'admin'}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => activeLambda(user.id)}> {user.active ? 'deactivate' : "activate"}</DropdownMenuItem>
+                            <DropdownMenuSeparator /> */}
+                            <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant="outline">Edit product</Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                            <DialogHeader>
+                                <DialogTitle className="text-center">Edit product</DialogTitle>
+                                <DialogDescription>
+                                    Make changes to your product here. Click update when you're done.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <EditProduct user={user}/>
+                        </DialogContent>
+                    </Dialog>
+                            {/* <DropdownMenuItem onClick={() => remove(user.id)}> remove product</DropdownMenuItem> */}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
 
                     
 
 
 
 
-    //             </>
+                </>
 
 
-    //         )
-    //     }
-    // },
+            )
+        }
+    },
 
 ]

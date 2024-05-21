@@ -63,15 +63,15 @@ export function DataTable<TData, TValue>({
     })
 
     return (
-       <ScrollArea className="w-full">
-         <div className="px-3">
-            <div className="rounded-md px-2 border">
+       <ScrollArea className="w-screen">
+         <div className=" md:px-3">
+            <div className="rounded-md md:px-2 border">
                 <div className="flex items-center py-4">
                     <Input
-                        placeholder="Filter emails..."
-                        value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+                        placeholder="Filter product..."
+                        value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
-                            table.getColumn("email")?.setFilterValue(event.target.value)
+                            table.getColumn("name")?.setFilterValue(event.target.value)
                         }
                         className="max-w-sm"
                     />
@@ -147,7 +147,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex-1 text-sm text-muted-foreground">
+            <div className="flex-1 text-xs md:text-sm text-muted-foreground">
                 {table.getFilteredSelectedRowModel().rows.length} of{" "}
                 {table.getFilteredRowModel().rows.length} row(s) selected.
             </div>

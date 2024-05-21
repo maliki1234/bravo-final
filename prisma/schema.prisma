@@ -4,18 +4,17 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url      = env("DATABASE_URL")
 }
 
 /// We could not retrieve columns for the underlying table. Either it has none or you are missing rights to see them. Please check your privileges.
 
 model Businness {
-  id            Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   name          String
   description   String?
-  expDateInfo   Int    @default(60)
-  productRemain Int    @default(10)
+  expDateInfo   Int     @default(60)
+  productRemain Int     @default(10)
   user          User[]
 }
 
@@ -34,8 +33,9 @@ model User {
   Report      Report[]
   Sales       Sales[]
   Stock       Stock[]
+  Deni        Deni[]
   BusinessId  Int
-  Business Businness @relation(fields: [BusinessId], references: [id])
+  Business    Businness     @relation(fields: [BusinessId], references: [id])
 }
 
 model Category {
@@ -54,10 +54,11 @@ model Product {
   updatedAt   DateTime @updatedAt
   categoryId  Int
   state       state    @default(active)
-  barcode     String?   @unique
+  barcode     String?  @unique
   category    Category @relation(fields: [categoryId], references: [id])
   Report      Report[]
   Sales       Sales[]
+  Deni        Deni[]
   Stock       Stock[]
 }
 
@@ -92,17 +93,52 @@ model Report {
   UserId     Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  quantity   Int
-  totalPrice Int
-  price      Int
+  quantity   Decimal  @db.Decimal(9, 2)
+  totalPrice Decimal  @db.Decimal(9, 2)
+  price      Decimal  @db.Decimal(9, 2)
   date       String   @default("2023-12-17")
   time       String   @default("00:00")
   month      String   @default("1")
   year       String   @default("2024")
-  ppi        Int      @default(0)
-  profit     Int      @default(0)
+  ppi        Decimal  @default(0) @db.Decimal(9, 2)
+  profit     Decimal  @default(0) @db.Decimal(9, 2)
   Product    Product  @relation(fields: [ProductId], references: [id])
   Saler      User     @relation(fields: [UserId], references: [id])
+}
+
+model Customer {
+  id          Int    @id @default(autoincrement())
+  name        String @unique
+  phoneNumber Int
+  Deni        Deni[]
+  balance Int @default(0)
+}
+
+model Deni {
+  id         Int      @id @default(autoincrement())
+  ProductId  Int
+  UserId     Int
+  CustomerId   Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  quantity   Decimal  @db.Decimal(9, 2)
+  totalPrice Decimal  @db.Decimal(9, 2)
+  price      Decimal  @db.Decimal(9, 2)
+  date       String   @default("2023-12-17")
+  time       String   @default("00:00")
+  month      String   @default("1")
+  year       String   @default("2024")
+  ppi        Decimal  @default(0) @db.Decimal(9, 2)
+  profit     Decimal  @default(0) @db.Decimal(9, 2)
+  Product    Product  @relation(fields: [ProductId], references: [id])
+  Saler      User     @relation(fields: [UserId], references: [id])
+  Customer      Customer     @relation(fields: [CustomerId], references: [id])
+}
+model CustomerRecods {
+  id Int @id @default(autoincrement())
+  action Action @default(DEBIT)
+  date      String   @default("2023-12-17")
+
 }
 
 model frequentAsked {
@@ -131,6 +167,11 @@ enum Role {
   ADMIN
   SUPERVISOR
   EMPLOYEE
+}
+
+enum Action {
+  CREDIT
+  DEBIT
 }
 
 enum state {
