@@ -12,8 +12,7 @@ import SideBar from "@/components/sidebar/SideBar"
 import { redirect } from "next/navigation"
 import Header from "@/components/header/Header"
 import { sales } from "@/lib/link"
-// import Header from "@/components/sales/Header"
-// import Header from "@/components/header/Header"
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -24,8 +23,7 @@ export default async function RootLayout({
 }) {
 
   const session = await getServerSession(authOptions)
-  // const session = await getServerSession(authOptions)
-  // console.log(session)
+ 
   if(session === null){
     redirect('/auth/login')
   }
@@ -34,10 +32,7 @@ export default async function RootLayout({
 
 
   return (
-    <html lang="en">
-      <Provider>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system">
+   
         <div className="grid  grid-cols-1 md:grid-cols-9">
           <div className="hidden z-10 md:flex md:col-span-1">
            <SideBar />
@@ -49,9 +44,6 @@ export default async function RootLayout({
             </div >
           </div>
         </div>
-        </ThemeProvider>
-      </body>
-      </Provider>
-    </html>
+       
   )
 }

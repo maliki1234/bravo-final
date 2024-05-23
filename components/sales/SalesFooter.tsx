@@ -314,7 +314,7 @@ export default function SalesFooter() {
 
                         {/*ANOTHE DIALOG  */}
 
-                        <Dialog>
+                        {/* <Dialog>
                             <DialogTrigger asChild>
                                 <Button type='submit' onClick={() => payL()} variant={'outline'} className='w-full h-12'>pay later</Button>
 
@@ -447,24 +447,15 @@ export default function SalesFooter() {
                                             {tot}
                                         </div>
                                     </div>
-                                    {/* <div className="py-6 grid justify-center">
-                                    <Label className='capitalize'>thank you for shoping</Label>
-                                </div> */}
+                                   
                                 </div>
-                                {/* <DialogFooter className="sm:justify-between">
-                                <DialogClose asChild>
-                                    <Button type="button" variant="secondary">
-                                        Close
-                                    </Button>
-                                </DialogClose>
-                                <Button onClick={handlePrint} type="submit">print</Button>
-                            </DialogFooter> */}
+                             
                             </DialogContent>:""
                             }
 
 
 
-                        </Dialog>
+                        </Dialog> */}
 
                     </div>
                 </div>

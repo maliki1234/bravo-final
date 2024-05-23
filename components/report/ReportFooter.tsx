@@ -54,7 +54,7 @@ export default function ReportFooter({ pro , day }) {
   
       const data = await respond.json();
       const dt = data.message
-      // console.log(dt)
+      console.log(dt)
       const sum = dt.reduce((accumulator, object) => {
         return accumulator + object.price;
       }, 0);
@@ -77,16 +77,16 @@ export default function ReportFooter({ pro , day }) {
       // console.log(pro)
       getReportByDate(day)
     }
-
-    const sum = pro.reduce((accumulator, object) => {
-      return accumulator + object.totalPrice;
+    console.log(pro)
+    const sum:number = pro.reduce((accumulator: any, object: { totalPrice: any; }) => {
+      return accumulator + parseInt(object.totalPrice);
     }, 0);
 
-    //   console.log( sum)
+      console.log( sum)
     setfirst(sum);
 
-    const totalProfit = pro.reduce((accumulator, object) => {
-      return accumulator + object.profit;
+    const totalProfit:number = pro.reduce((accumulator, object) => {
+      return accumulator + parseInt(object.profit);
     }, 0);
 
     //   console.log( sum)

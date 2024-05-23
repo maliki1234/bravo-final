@@ -44,10 +44,7 @@ export default async function RootLayout({
   }
 }
   return (
-    <html lang="en">
-      <Provider>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system">
+    
         <div className="grid grid-cols-1 md:grid-cols-9">
           <div className=" hidden md:block  col-span-1">
            <SideBar />
@@ -60,10 +57,6 @@ export default async function RootLayout({
             </div >
           </div>
         </div>
-        <Toaster />
-        </ThemeProvider>
-      </body>
-      </Provider>
-    </html>
+       
   )
 }
